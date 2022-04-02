@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import com.rest.practiceapp.service.encrypt.PasswordService
 
 @Service
-class AccountService() {
+class AccountService {
 
     @Autowired
     lateinit var accountRepository: AccountRepository
@@ -19,15 +19,12 @@ class AccountService() {
 
     fun signup(account: Account) : ResponseEntity<String>
     {
-        try{
-            var passwordToBeSaved = passwordService.hashPassword(account.password)
+        return if(accountRepository.existsByEmail(account.email)) ResponseEntity<String>("Email already exist",HttpStatus.OK) else {
+            val passwordToBeSaved = passwordService.hashPassword(account.password)
             account.password = passwordToBeSaved
             accountRepository.save(account)
-        }catch(e:Exception)
-        {
-            return ResponseEntity<String>("Email already exist",HttpStatus.OK)
+            ResponseEntity<String>("Sign Up Success",HttpStatus.CREATED)
         }
-        return ResponseEntity<String>("Sign Up Success",HttpStatus.CREATED)
     }
 
     fun login(email:String,password:String) : ResponseEntity<Iterable<Account>>
