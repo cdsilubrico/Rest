@@ -2,6 +2,7 @@ package com.rest.practiceapp.service
 
 import com.rest.practiceapp.model.Account
 import com.rest.practiceapp.dao.AccountRepository
+import com.rest.practiceapp.model.LoginParameters
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -27,9 +28,9 @@ class AccountService {
         }
     }
 
-    fun login(email:String,password:String) : ResponseEntity<Iterable<Account>>
+    fun login(loginParameters: LoginParameters) : ResponseEntity<Iterable<Account>>
     {
-        val account = accountRepository.findByEmail(email)
+        val account = accountRepository.findByEmail(loginParameters.email)
 
         return ResponseEntity<Iterable<Account>>(account,HttpStatus.OK)
     }
