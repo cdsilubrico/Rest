@@ -1,6 +1,7 @@
 package com.rest.practiceapp.controller
 
 import com.rest.practiceapp.model.Account
+import com.rest.practiceapp.model.LoginParameters
 import com.rest.practiceapp.service.AccountService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -19,7 +20,7 @@ class AccountController {
     }
 
     @RequestMapping(value=["/login"], method = [RequestMethod.GET])
-    fun login(@RequestParam email: String, password:String): ResponseEntity<Iterable<Account>> {
-        return accountService.login(email,password)
+    fun login(@ModelAttribute loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
+        return accountService.login(loginParameters)
     }
 }
