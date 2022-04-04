@@ -1,4 +1,4 @@
-package com.rest.practiceapp.model
+package com.rest.practiceapp.model.parameters
 
 data class LoginParameters(
     val email:String,
