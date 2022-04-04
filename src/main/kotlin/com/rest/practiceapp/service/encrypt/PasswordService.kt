@@ -10,15 +10,8 @@ import javax.crypto.spec.PBEKeySpec
 
 @Service
 class PasswordService {
-    private val random = SecureRandom()
 
-    private fun generateSalt(): ByteArray {
-        val salt = ByteArray(16)
-        random.nextBytes(salt)
-        return salt
-    }
-
-    private fun hash(password: String, salt: ByteArray): ByteArray {
+    fun hash(password: String, salt: ByteArray): ByteArray {
         val spec = PBEKeySpec(password.toCharArray(), salt, 1000, 256)
         try {
             val skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
@@ -33,8 +26,8 @@ class PasswordService {
     }
 
     //@Throws(NoSuchAlgorithmException::class)
-    fun hashPassword(password:String): String {
-        val hashed = hash(password, generateSalt())
+    fun hashPassword(salt:ByteArray,password:String): String {
+        val hashed = hash(password, salt)
         val bigInt = BigInteger(1, hashed)
         val inHex = bigInt.toString(16)
         val paddingLength = hashed.size * 2 - inHex.length
