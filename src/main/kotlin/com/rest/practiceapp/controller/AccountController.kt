@@ -1,7 +1,8 @@
 package com.rest.practiceapp.controller
 
 import com.rest.practiceapp.model.Account
-import com.rest.practiceapp.model.LoginParameters
+import com.rest.practiceapp.model.Salt
+import com.rest.practiceapp.model.parameters.LoginParameters
 import com.rest.practiceapp.service.AccountService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
