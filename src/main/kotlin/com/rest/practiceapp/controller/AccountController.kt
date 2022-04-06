@@ -20,8 +20,8 @@ class AccountController {
         return accountService.signup(account)
     }
 
-    @RequestMapping(value=["/login"], method = [RequestMethod.GET])
-    fun login(@ModelAttribute loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
+    @RequestMapping(value=["/login"], method = [RequestMethod.POST])
+    fun login(@RequestBody loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
         return accountService.login(loginParameters)
     }
 }
