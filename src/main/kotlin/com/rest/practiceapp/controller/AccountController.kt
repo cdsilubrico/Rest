@@ -15,12 +15,12 @@ class AccountController {
     @Autowired
     val accountService = AccountService()
 
-    @RequestMapping(value= ["/signup"], method = [RequestMethod.POST])
+    @PostMapping(value= ["/signup"])
     fun signup(@RequestBody account: Account): ResponseEntity<String> {
         return accountService.signup(account)
     }
 
-    @RequestMapping(value=["/login"], method = [RequestMethod.POST])
+    @PostMapping(value=["/login"])
     fun login(@RequestBody loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
         return accountService.login(loginParameters)
     }
