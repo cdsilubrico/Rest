@@ -57,4 +57,13 @@ class AccountService {
         }
         return ResponseEntity<Iterable<Account>>(HttpStatus.OK)
     }
+
+    fun accounts() : ResponseEntity<Iterable<Account>>
+    {
+        val account = accountRepository.findAll()
+
+        return ResponseEntity(account,HttpStatus.OK)
+    }
+
+
 }
