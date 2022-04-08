@@ -44,18 +44,16 @@ class AccountService {
         }
     }
 
-    fun login(loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
+    fun login(loginParameters: LoginParameters): ResponseEntity<Account> {
+        val emailExist = accountRepository.existsByEmail(loginParameters.email)
         val account = accountRepository.findByEmail(loginParameters.email)
 
-        if(!account.iterator().hasNext())
+        return if(emailExist &&  account.password == loginParameters.password)
         {
-            return ResponseEntity<Iterable<Account>>(HttpStatus.OK)
+            return ResponseEntity<Account>(account,HttpStatus.OK)
         }else
-        {
-            if(loginParameters.password == account.iterator().next().password)
-                return ResponseEntity<Iterable<Account>>(account,HttpStatus.OK)
-        }
-        return ResponseEntity<Iterable<Account>>(HttpStatus.OK)
+            return ResponseEntity<Account>(HttpStatus.OK)
+
     }
 
     fun accounts() : ResponseEntity<Iterable<Account>>
