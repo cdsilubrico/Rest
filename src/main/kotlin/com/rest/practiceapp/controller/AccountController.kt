@@ -24,4 +24,8 @@ class AccountController {
     fun login(@RequestBody loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
         return accountService.login(loginParameters)
     }
+
+    @GetMapping(value=["accounts"])
+    fun accounts():ResponseEntity<Iterable<Account>> = accountService.accounts()
+
 }
