@@ -21,7 +21,7 @@ class AccountController {
     }
 
     @PostMapping(value=["/login"])
-    fun login(@RequestBody loginParameters: LoginParameters): ResponseEntity<Iterable<Account>> {
+    fun login(@RequestBody loginParameters: LoginParameters): ResponseEntity<Account> {
         return accountService.login(loginParameters)
     }
 
