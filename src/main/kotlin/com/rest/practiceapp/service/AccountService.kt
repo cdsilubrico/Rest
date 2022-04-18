@@ -56,7 +56,7 @@ class AccountService {
 
     }
 
-    fun accounts() : ResponseEntity<Iterable<Account>>
+    fun accounts() : ResponseEntity<List<Account>>
     {
         val account = accountRepository.findAll()
 
