@@ -17,26 +17,9 @@ class AccountService {
     @Autowired
     lateinit var accountRepository: AccountRepository
 
-//    @Autowired
-//    lateinit var saltRepository: SaltRepository
-
-//    @Autowired
-//    lateinit var passwordService: PasswordService
-
-//    @Autowired
-//    lateinit var saltService: SaltService
-
     fun signup(account: Account) : ResponseEntity<String>
     {
         return if(accountRepository.existsByEmail(account.email)) ResponseEntity<String>("Email already exist",HttpStatus.OK) else {
-
-            //val salt = saltService.generateSalt()
-
-            //val passwordToBeSaved = passwordService.hash(account.password,salt)
-
-            //account.password = passwordToBeSaved
-
-            //saltRepository.save((Salt(account.email,salt,passwordService.hash(account.password,salt))))
 
             accountRepository.save(account)
 
@@ -48,19 +31,18 @@ class AccountService {
         val emailExist = accountRepository.existsByEmail(loginParameters.email)
         val account = accountRepository.findByEmail(loginParameters.email)
 
-        return if(emailExist &&  account.password == loginParameters.password)
+        if(emailExist && (account.password == loginParameters.password))
         {
             return ResponseEntity<Account>(account,HttpStatus.OK)
-        }else
+        }else {
             return ResponseEntity<Account>(HttpStatus.OK)
+        }
 
     }
 
-    fun accounts() : ResponseEntity<List<Account>>
-    {
+    fun accounts(): ResponseEntity<List<Account>>{
         val account = accountRepository.findAll()
-
-        return ResponseEntity(account,HttpStatus.OK)
+        return ResponseEntity<List<Account>>(account,HttpStatus.OK)
     }
 
 
