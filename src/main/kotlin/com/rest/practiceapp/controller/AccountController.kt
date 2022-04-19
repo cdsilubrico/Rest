@@ -1,7 +1,6 @@
 package com.rest.practiceapp.controller
 
 import com.rest.practiceapp.model.Account
-import com.rest.practiceapp.model.Salt
 import com.rest.practiceapp.model.parameters.LoginParameters
 import com.rest.practiceapp.service.AccountService
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,6 +25,8 @@ class AccountController {
     }
 
     @GetMapping(value=["/accounts"])
-    fun accounts():ResponseEntity<List<Account>> = accountService.accounts()
+    fun accounts(): ResponseEntity<List<Account>> {
+        return accountService.accounts()
+    }
 
 }
