@@ -1,3 +1,1 @@
-# Rest
-Tech Stack used:
-Kotlin, SpringBoot, and PostGreSQL
+A Simple back-end service using SpringBoot-Kotlin with PostGreSQL
