@@ -27,17 +27,18 @@ class AccountService {
         }
     }
 
-    fun login(loginParameters: LoginParameters): ResponseEntity<Account> {
+    fun login(loginParameters: LoginParameters): ResponseEntity<Any> {
         val emailExist = accountRepository.existsByEmail(loginParameters.email)
-        val account = accountRepository.findByEmail(loginParameters.email)
 
-        if(emailExist && (account.password == loginParameters.password))
+        if(emailExist)
         {
-            return ResponseEntity<Account>(account,HttpStatus.OK)
-        }else {
-            return ResponseEntity<Account>(HttpStatus.OK)
+            val account = accountRepository.findByEmail(loginParameters.email)
+            if(account.password == loginParameters.password)
+            {
+                return ResponseEntity.ok().body(account)
+            }
         }
-
+        return ResponseEntity.ok().body("Invalid User/Password")
     }
 
     fun accounts(): ResponseEntity<List<Account>>{
