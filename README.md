@@ -1,1 +1,1 @@
-A Simple back-end service using SpringBoot-Kotlin with PostGreSQL
+A Simple back-end service using SpringBoot-Kotlin with PostGreSQL Database
