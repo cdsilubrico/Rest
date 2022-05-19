@@ -1,7 +1,7 @@
 package com.rest.practiceapp.service
 
 import com.rest.practiceapp.model.Account
-import com.rest.practiceapp.dao.AccountRepository
+import com.rest.practiceapp.controller.dao.AccountRepository
 import com.rest.practiceapp.model.parameters.LoginParameters
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
