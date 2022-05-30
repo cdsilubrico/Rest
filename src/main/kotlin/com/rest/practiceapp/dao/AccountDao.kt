@@ -1,4 +1,4 @@
-package com.rest.practiceapp.controller.dao
+package com.rest.practiceapp.dao
 
 import com.rest.practiceapp.model.Account
 import org.springframework.data.jpa.repository.JpaRepository
