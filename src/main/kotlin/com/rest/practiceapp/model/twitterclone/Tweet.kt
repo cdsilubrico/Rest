@@ -1,27 +1,25 @@
 package com.rest.practiceapp.model.twitterclone
 
-import com.rest.practiceapp.generators.Generator
-import com.rest.practiceapp.model.Account
-import java.util.*
+import com.rest.practiceapp.generators.TweetIdGenerator
 import javax.persistence.*
 
 @Entity
 @Table(name = "practice_app_one_tweet")
 data class Tweet(
-    val created_at: String,
+    val created_at: String = TweetIdGenerator().createdAt,
     @Id
-    val id: Long = Generator().generateID().toLong(),
-    val idStr: String,
+    val id: Long = TweetIdGenerator().generate().toLong(),
+    val idStr: String = id.toString(),
     val text: String,
     val inReplyToStatusId: Int,
-    val inReplyToStatusStr: String,
+    val inReplyToStatusStr: String = inReplyToStatusId.toString(),
     val inReplyToUserId: Int,
-    val inReplyToUserIdStr: String,
-    @ManyToOne
-    val account: Account,
+    val inReplyToUserIdStr: String = inReplyToUserId.toString(),
+    val accountId: Int ,
     val favorite: Boolean,
     val retweeted: Boolean,
     val replyCount: Int,
     val favoriteCount: Int,
     val retweetCount: Int
-)
+) {
+}
