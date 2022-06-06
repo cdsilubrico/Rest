@@ -20,12 +20,4 @@ class TweetController {
         return tweetService.tweet(tweet)
     }
 
-
-
-
-
-
-
-
-
 }
