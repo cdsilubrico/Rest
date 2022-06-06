@@ -3,15 +3,20 @@ package com.rest.practiceapp.generators
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Generator {
+class TweetIdGenerator {
 
-    fun generateID(): String {
+    var createdAt:String
 
+    init {
+        createdAt = ""
+    }
+
+    fun generate():String{
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss.SSS")
         val current = LocalDateTime.now()
+        createdAt = current.toString()
 
         val formatted = current.format(formatter)
-        println(formatted)
 
         val yy = formatted.substring(0, 4)
         val mm = formatted.substring(4, 6)
